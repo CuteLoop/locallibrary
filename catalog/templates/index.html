@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Inicio:  Biblioteca Local</h1>
+
+  <p>Sean Bienvenidos y Bienvenidas a la <em>BibliotecaLocal</em>, Un sitio web con la funcionalidad de una biblioteca desarrollado con django y ayuda del tutorial de Mozilla.</p>
+
+<h2>Contenido Dinámico</h2>
+
+  <p>Esta librería cuanta las siguientes estadísiticas:</p>
+  <ul>
+    <li><strong>Libros:</strong> {{ num_books }}</li>
+    <li><strong>Copias:</strong> {{ num_instances }}</li>
+    <li><strong>Copias disponibles:</strong> {{ num_instances_available }}</li>
+    <li><strong>Autores:</strong> {{ num_authors }}</li>
+    <li><strong>Géneros:</strong> {{ num_gendres }}</li>
+    <li><strong>Libros con la palabra '{{word}}' en su título:</strong> {{ word_count }}</li>
+    <p>Has visitado esta página {{ num_visits }}{% if num_visits == 1 %} veces{% else %} veces{% endif %}.</p>
+
+
+  </ul>
+
+{% endblock %}

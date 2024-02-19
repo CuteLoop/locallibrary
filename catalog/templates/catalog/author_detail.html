@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<p><strong>Nombre:</strong> {{ author.first_name }} {{ author.last_name }}</p>
+<p>Vida: ({{ author.date_of_birth }}-{{ author.date_of_death }})</p>
+<p><strong>Biografía:</strong> {{author.biography}}</p>
+
+Libros:
+{% for book in book_list %}
+      <li>
+        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+      </li>
+{% endfor %}
+
+{% block sidebar %}
+  {{ block.super }}
+
+  {% if perms.catalog.change_author or perms.catalog.delete_author %}
+  <hr>
+  <ul class="sidebar-nav">
+    {% if perms.catalog.change_author %}
+      <li><a href="{% url 'author-update' author.id %}">Update author</a></li>
+    {% endif %}
+    {% if not author.book_set.all and perms.catalog.delete_author %}
+      <li><a href="{% url 'author-delete' author.id %}">Delete author</a></li>
+    {% endif %}
+    </ul>
+  {% endif %}
+
+{% endblock %}
+
+
+{% endblock %}
