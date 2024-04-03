@@ -151,14 +151,17 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Update database configuration from $DATABASE_URL environment variable (if defined)
 
 
-
-import dj_database_url
-
-DATABASE_URL = os.getenv("DATABASE_URL")
-
 DATABASES = {
-    "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': 'viaduct.proxy.rlwy.net',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PORT': '31637',
+        'PASSWORD': 'aeiaDcFFYQglNtQbAhdAKKdUVxARWpsl',
+    }
 }
+
 # Static file serving.
 # https://whitenoise.readthedocs.io/en/stable/django.html#add-compression-and-caching-support
 STORAGES = {
